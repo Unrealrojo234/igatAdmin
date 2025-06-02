@@ -33,6 +33,7 @@
 		"vitest": "^3.0.0"
 	},
 	"dependencies": {
-		"pocketbase": "^0.26.0"
+		"pocketbase": "^0.26.0",
+		"sweetalert2": "^11.22.0"
 	}
 }
