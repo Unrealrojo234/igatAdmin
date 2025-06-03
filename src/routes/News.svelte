@@ -179,14 +179,4 @@
 		color: #555;
 		margin: 0 0 0.5rem;
 	}
-
-	.imageDiv a {
-		margin-bottom: 1rem;
-		color: #0d6efd;
-		text-decoration: none;
-	}
-
-	.imageDiv a:hover {
-		text-decoration: underline;
-	}
 </style>
