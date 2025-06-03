@@ -1,6 +1,7 @@
 <script>
 	import Gallery from './Gallery.svelte';
 	import News from './News.svelte';
+	import UpcomingEvents from './UpcomingEvents.svelte';
 </script>
 
 <main class="container-fluid">
@@ -20,7 +21,8 @@
 		</div>
 		<div class="contents card">
 			<!-- <Gallery /> -->
-			<News />
+			<!-- <News /> -->
+			<UpcomingEvents />
 		</div>
 	</div>
 </main>
