@@ -3,32 +3,55 @@
 	import News from './News.svelte';
 	import UpcomingEvents from './UpcomingEvents.svelte';
 	import Team from './Team.svelte';
+
+	const activeStyle = `background-color:#252525;color:white`;
+	let active = $state(0);
+
+	const tabs = [
+		{ id: 0, name: 'Gallery', icon: 'image' },
+		{ id: 1, name: 'News', icon: 'newspaper' },
+		{ id: 2, name: 'Team', icon: 'people-group' },
+		{ id: 3, name: 'Upcoming-Events', icon: 'calendar-days' },
+		{ id: 4, name: 'Messages', icon: 'comments' }
+	];
+
+	const handleTabChange = (id) => (active = id);
 </script>
 
 <main class="container-fluid">
 	<h1 class="text-center">IGAT Admin Dashboard</h1>
 	<div class="div">
 		<div class="card p-2" id="pane">
-			<button class="btn btn-outline-dark">Gallery <i class="fa-solid fa-image"></i></button>
-			<button class="btn btn-outline-dark">News <i class="fa-solid fa-newspaper"></i></button>
-			<button class="btn btn-outline-dark">Team <i class="fa-solid fa-people-group"></i></button>
-			<button class="btn btn-outline-dark"
-				>Upcoming-Events <i class="fa-solid fa-calendar-days"></i></button
-			>
-			<button class="btn btn-outline-dark">Messages <i class="fa-solid fa-comments"></i></button>
-			<button class="mt-3 btn btn-outline-danger"
-				>Logout <i class="fa-solid fa-right-from-bracket"></i></button
-			>
+			{#each tabs as tab}
+				<button
+					style={active === tab.id ? activeStyle : ''}
+					onclick={() => handleTabChange(tab.id)}
+					class="btn btn-outline-dark"
+				>
+					{tab.name} <i class="fa-solid fa-{tab.icon}"></i>
+				</button>
+			{/each}
+
+			<button class="mt-3 btn btn-outline-danger">
+				Logout <i class="fa-solid fa-right-from-bracket"></i>
+			</button>
 		</div>
+
 		<div class="contents card">
-			<!-- <Gallery /> -->
-			<!-- <News /> -->
-			<!-- <UpcomingEvents /> -->
-			<Team />
+			{#if active === 0}
+				<Gallery />
+			{:else if active === 1}
+				<News />
+			{:else if active === 2}
+				<Team />
+			{:else if active === 3}
+				<UpcomingEvents />
+			{:else if active === 4}
+				<h1 class="text-center">Coming Soon</h1>
+			{/if}
 		</div>
 	</div>
 </main>
-;
 
 <style>
 	.div {
