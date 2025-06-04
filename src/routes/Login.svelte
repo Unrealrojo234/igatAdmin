@@ -32,8 +32,8 @@
 	}
 </script>
 
-<h1 class="text-center mt-4">Igat Admin Dash!</h1>
-<main>
+<main class="container2">
+	<h1>Igat Admin Dashboard Login</h1>
 	<!-- From Uiverse.io by glisovic01 -->
 	<div class="login-box">
 		<p>Login</p>
@@ -58,7 +58,11 @@
 </main>
 
 <style>
-	/* From Uiverse.io by glisovic01 */
+	h1 {
+		font-size: 3rem;
+		text-align: center;
+		margin-top: 12px;
+	}
 	.login-box {
 		position: absolute;
 		top: 50%;
