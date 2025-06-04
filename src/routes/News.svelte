@@ -67,23 +67,28 @@
 	const getImageUrl = (record, filename) => {
 		return `${pb.baseUrl}/api/files/${record.collectionId}/${record.id}/${filename}`;
 	};
-
 	const handleDelete = async (id) => {
-		try {
-			const record = await pb.collection('news').delete(id);
+		Swal.fire({
+			title: 'Are you sure you want to delete this?',
+			showCancelButton: true,
+			confirmButtonText: 'Yes',
+			denyButtonText: `Cancel`
+		}).then(async (result) => {
+			if (result.isConfirmed) {
+				try {
+					let record = await pb.collection('gallery').delete(id);
+					if (record) {
+						sweetAlert('success', 'Record Deleted Successfully!');
 
-			console.log(record);
-
-			if (record) {
-				sweetAlert('success', 'Record Deleted Successfully!');
-
-				refresh();
+						refresh();
+					}
+				} catch (error) {
+					sweetAlert('error', 'An error has occurred');
+				}
+			} else if (result.isDismissed) {
+				sweetAlert('info', 'Deletion Cancelled');
 			}
-		} catch (error) {
-			sweetAlert('error', 'An error has occurred!');
-
-			console.log(error);
-		}
+		});
 	};
 
 	let showForm = $state(false);
@@ -144,7 +149,9 @@
 					<p>{data.info}</p>
 					<p class="text-secondary">{data.tags}</p>
 					<div class="p-2">
-						<button class="btn btn-outline-danger" onclick={handleDelete(data.id)}>Delete</button>
+						<button class="btn btn-outline-danger" onclick={() => handleDelete(data.id)}
+							>Delete <i class="fa-solid fa-trash"></i></button
+						>
 					</div>
 				</div>
 			{/each}
