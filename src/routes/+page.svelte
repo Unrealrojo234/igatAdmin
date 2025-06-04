@@ -52,6 +52,8 @@
 				<UpcomingEvents />
 			{:else if active === 4}
 				<h1 class="text-center">Coming Soon</h1>
+			{:else}
+				<Gallery />
 			{/if}
 		</div>
 	</div>

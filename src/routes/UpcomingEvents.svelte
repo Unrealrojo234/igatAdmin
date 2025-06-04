@@ -3,6 +3,10 @@
 
 	import Swal from 'sweetalert2';
 
+	import Loader from './Loader.svelte';
+
+	let loading = $state(true);
+
 	function sweetAlert(icon, title) {
 		Swal.fire({
 			icon: icon,
@@ -20,6 +24,8 @@
 		});
 
 		upcoming_events = records;
+
+		loading = false;
 	}
 
 	$effect(() => {
@@ -91,6 +97,10 @@
 		showForm = !showForm;
 	}
 </script>
+
+{#if loading}
+	<Loader />
+{/if}
 
 <main>
 	<h1 class="text-center">Upcoming Events</h1>

@@ -5,6 +5,10 @@
 
 	let showForm = $state(false);
 
+	import Loader from './Loader.svelte';
+
+	let loading = $state(true);
+
 	function toggleForm() {
 		showForm = !showForm;
 	}
@@ -26,6 +30,8 @@
 		});
 
 		gallery = records;
+
+		loading = false;
 	}
 
 	$effect(() => {
@@ -88,10 +94,13 @@
 	};
 </script>
 
+{#if loading}
+	<Loader />
+{/if}
+
 <main>
 	<h1 class="text-center">Gallery</h1>
 	<hr />
-
 	<div class="text-center mb-4">
 		<button onclick={toggleForm} class="btn btn-lg btn-outline-dark">
 			{showForm ? 'Hide Form' : 'Add New Item'}

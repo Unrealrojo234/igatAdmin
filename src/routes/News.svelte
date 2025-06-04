@@ -2,6 +2,7 @@
 	import { pb } from '$lib/pocketbase';
 
 	import Swal from 'sweetalert2';
+	import Loader from './Loader.svelte';
 
 	function sweetAlert(icon, title) {
 		Swal.fire({
@@ -12,6 +13,8 @@
 		});
 	}
 
+	let loading = $state(true);
+
 	let news = $state([]);
 
 	async function refresh() {
@@ -20,6 +23,8 @@
 		});
 
 		news = records;
+
+		loading = false;
 	}
 
 	$effect(() => {
@@ -87,6 +92,10 @@
 		showForm = !showForm;
 	}
 </script>
+
+{#if loading}
+	<Loader />
+{/if}
 
 <main>
 	<h1 class="text-center">News</h1>
