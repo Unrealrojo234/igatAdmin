@@ -15,7 +15,9 @@
 		{ id: 4, name: 'Messages', icon: 'comments' }
 	];
 
-	const handleTabChange = (id) => (active = id);
+	const handleTabChange = (id) => {
+		active = id;
+	};
 </script>
 
 <svelte:head>
