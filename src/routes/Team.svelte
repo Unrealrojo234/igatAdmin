@@ -84,37 +84,57 @@
 			console.log(error);
 		}
 	};
+
+	let showForm = $state(false);
+
+	function toggleForm() {
+		showForm = !showForm;
+	}
 </script>
 
 <main>
 	<h1 class="text-center">Team</h1>
 	<hr />
-	<form action="submit" onsubmit={handleUpload} class="form-control">
-		<label for="name" class="form-label">Name: </label>
-		<input bind:value={name} type="text" class="form-control" required />
-		<br />
-		<label for="name" class="form-label">Position: </label>
-		<input required class="form-control" bind:value={position} />
+	<div class="text-center mb-4">
+		<button onclick={toggleForm} class="btn btn-lg btn-outline-dark">
+			{showForm ? 'Hide Form' : 'Add New Item'}
+		</button>
+	</div>
 
-		<br />
-		<label for="name" class="form-label">Info: </label>
-		<textarea bind:value={info} class="form-control" required name="details" id="text"></textarea>
-		<br />
-		<div style="display: flex;" class="mb-3">
-			<label for="tags" class="form-label">Email: </label>
-			<input type="mail" bind:value={email} class="form-control" required />
-			&nbsp;
-			<label for="tags" class="form-label">Phone: </label>
-			<input bind:value={phone} type="number" class="form-control" required />
-		</div>
-		<br />
-		<label for="image" class="form-label">Profile Picture</label>
-		<input accept="image/*" onchange={handleFileInput} type="file" required class="form-control" />
-		<br />
-		<div class="text-center">
-			<button type="submit" class="btn btn-lg btn-outline-dark">Upload</button>
-		</div>
-	</form>
+	{#if showForm}
+		<form action="submit" onsubmit={handleUpload} class="form-control">
+			<label for="name" class="form-label">Name: </label>
+			<input bind:value={name} type="text" class="form-control" required />
+			<br />
+			<label for="name" class="form-label">Position: </label>
+			<input required class="form-control" bind:value={position} />
+
+			<br />
+			<label for="name" class="form-label">Info: </label>
+			<textarea bind:value={info} class="form-control" required name="details" id="text"></textarea>
+			<br />
+			<div style="display: flex;" class="mb-3">
+				<label for="tags" class="form-label">Email: </label>
+				<input type="mail" bind:value={email} class="form-control" required />
+				&nbsp;
+				<label for="tags" class="form-label">Phone: </label>
+				<input bind:value={phone} type="number" class="form-control" required />
+			</div>
+			<br />
+			<label for="image" class="form-label">Profile Picture</label>
+			<input
+				accept="image/*"
+				onchange={handleFileInput}
+				type="file"
+				required
+				class="form-control"
+			/>
+			<br />
+			<div class="text-center">
+				<button type="submit" class="btn btn-lg btn-outline-dark">Upload</button>
+			</div>
+		</form>
+	{/if}
 
 	{#await team}
 		<p>Loading...</p>

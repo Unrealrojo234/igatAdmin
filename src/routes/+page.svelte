@@ -18,6 +18,10 @@
 	const handleTabChange = (id) => (active = id);
 </script>
 
+<svelte:head>
+	<title>Igat Admin</title>
+</svelte:head>
+
 <main class="container-fluid">
 	<h1 class="text-center">IGAT Admin Dashboard</h1>
 	<div class="div">

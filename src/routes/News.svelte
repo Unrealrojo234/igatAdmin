@@ -80,36 +80,49 @@
 			console.log(error);
 		}
 	};
+
+	let showForm = $state(false);
+
+	function toggleForm() {
+		showForm = !showForm;
+	}
 </script>
 
 <main>
 	<h1 class="text-center">News</h1>
 	<hr />
-	<form action="submit" onsubmit={handleUpload} class="form-control">
-		<label for="name" class="form-label">Headline: </label>
-		<input bind:value={name} type="text" class="form-control" required />
-		<br />
-		<label for="name" class="form-label">Details: </label>
-		<textarea bind:value={details} class="form-control" required name="details" id="text"
-		></textarea>
-		<br />
-		<label for="name" class="form-label">Image: </label>
-		<input
-			type="file"
-			alt="image"
-			oninput={handleFileInput}
-			accept="image/*"
-			required
-			class="form-control"
-		/>
-		<br />
-		<label for="tags" class="form-label">Tags: </label>
-		<input bind:value={tags} class="form-control" required />
-		<br />
-		<div class="text-center">
-			<button type="submit" class="btn btn-lg btn-outline-dark">Upload</button>
-		</div>
-	</form>
+	<div class="text-center mb-4">
+		<button onclick={toggleForm} class="btn btn-lg btn-outline-dark">
+			{showForm ? 'Hide Form' : 'Add New Item'}
+		</button>
+	</div>
+	{#if showForm}
+		<form action="submit" onsubmit={handleUpload} class="form-control">
+			<label for="name" class="form-label">Headline: </label>
+			<input bind:value={name} type="text" class="form-control" required />
+			<br />
+			<label for="name" class="form-label">Details: </label>
+			<textarea bind:value={details} class="form-control" required name="details" id="text"
+			></textarea>
+			<br />
+			<label for="name" class="form-label">Image: </label>
+			<input
+				type="file"
+				alt="image"
+				oninput={handleFileInput}
+				accept="image/*"
+				required
+				class="form-control"
+			/>
+			<br />
+			<label for="tags" class="form-label">Tags: </label>
+			<input bind:value={tags} class="form-control" required />
+			<br />
+			<div class="text-center">
+				<button type="submit" class="btn btn-lg btn-outline-dark">Upload</button>
+			</div>
+		</form>
+	{/if}
 
 	{#await news}
 		<p>Loading...</p>

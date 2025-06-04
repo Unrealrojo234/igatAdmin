@@ -84,36 +84,50 @@
 			console.log(error);
 		}
 	};
+
+	let showForm = $state(false);
+
+	function toggleForm() {
+		showForm = !showForm;
+	}
 </script>
 
 <main>
 	<h1 class="text-center">Upcoming Events</h1>
 	<hr />
-	<form action="submit" onsubmit={handleUpload} class="form-control">
-		<label for="name" class="form-label">Event: </label>
-		<input bind:value={name} type="text" class="form-control" required />
-		<br />
-		<label for="name" class="form-label">Details: </label>
-		<textarea bind:value={info} class="form-control" required name="details" id="text"></textarea>
-		<br />
-		<label for="name" class="form-label">Venue: </label>
-		<input required class="form-control" bind:value={venue} />
+	<div class="text-center mb-4">
+		<button onclick={toggleForm} class="btn btn-lg btn-outline-dark">
+			{showForm ? 'Hide Form' : 'Add New Item'}
+		</button>
+	</div>
 
-		<br />
-		<div style="display: flex;" class="mb-3">
-			<label for="tags" class="form-label">Date: </label>
-			<input type="date" bind:value={date} class="form-control" required />
-			&nbsp;
-			<label for="tags" class="form-label">Time: </label>
-			<input bind:value={time} type="time" class="form-control" required />
-		</div>
-		<label for="tags" class="form-label">Link: </label>
-		<input bind:value={link} class="form-control" required />
-		<br />
-		<div class="text-center">
-			<button type="submit" class="btn btn-lg btn-outline-dark">Upload</button>
-		</div>
-	</form>
+	{#if showForm}
+		<form action="submit" onsubmit={handleUpload} class="form-control">
+			<label for="name" class="form-label">Event: </label>
+			<input bind:value={name} type="text" class="form-control" required />
+			<br />
+			<label for="name" class="form-label">Details: </label>
+			<textarea bind:value={info} class="form-control" required name="details" id="text"></textarea>
+			<br />
+			<label for="name" class="form-label">Venue: </label>
+			<input required class="form-control" bind:value={venue} />
+
+			<br />
+			<div style="display: flex;" class="mb-3">
+				<label for="tags" class="form-label">Date: </label>
+				<input type="date" bind:value={date} class="form-control" required />
+				&nbsp;
+				<label for="tags" class="form-label">Time: </label>
+				<input bind:value={time} type="time" class="form-control" required />
+			</div>
+			<label for="tags" class="form-label">Link: </label>
+			<input bind:value={link} class="form-control" required />
+			<br />
+			<div class="text-center">
+				<button type="submit" class="btn btn-lg btn-outline-dark">Upload</button>
+			</div>
+		</form>
+	{/if}
 
 	{#await upcoming_events}
 		<p>Loading...</p>

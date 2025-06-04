@@ -3,6 +3,12 @@
 
 	import Swal from 'sweetalert2';
 
+	let showForm = $state(false);
+
+	function toggleForm() {
+		showForm = !showForm;
+	}
+
 	function sweetAlert(icon, title) {
 		Swal.fire({
 			icon: icon,
@@ -85,30 +91,38 @@
 <main>
 	<h1 class="text-center">Gallery</h1>
 	<hr />
-	<form action="submit" onsubmit={handleUpload} class="form-control">
-		<label for="name" class="form-label">Name: </label>
-		<input bind:value={name} type="text" class="form-control" required />
-		<br />
-		<label for="name" class="form-label">Details: </label>
-		<input type="text" bind:value={details} class="form-control" required />
-		<br />
-		<label for="name" class="form-label">Image: </label>
-		<input
-			type="file"
-			alt="image"
-			oninput={handleFileInput}
-			accept="image/*"
-			required
-			class="form-control"
-		/>
-		<br />
-		<label for="link" class="form-label">Link: </label>
-		<input bind:value={link} type="url" class="form-control" required />
-		<br />
-		<div class="text-center">
-			<button type="submit" class="btn btn-lg btn-outline-dark">Upload</button>
-		</div>
-	</form>
+
+	<div class="text-center mb-4">
+		<button onclick={toggleForm} class="btn btn-lg btn-outline-dark">
+			{showForm ? 'Hide Form' : 'Add New Item'}
+		</button>
+	</div>
+	{#if showForm}
+		<form action="submit" onsubmit={handleUpload} class="form-control">
+			<label for="name" class="form-label">Name: </label>
+			<input bind:value={name} type="text" class="form-control" required />
+			<br />
+			<label for="name" class="form-label">Details: </label>
+			<input type="text" bind:value={details} class="form-control" required />
+			<br />
+			<label for="name" class="form-label">Image: </label>
+			<input
+				type="file"
+				alt="image"
+				oninput={handleFileInput}
+				accept="image/*"
+				required
+				class="form-control"
+			/>
+			<br />
+			<label for="link" class="form-label">Link: </label>
+			<input bind:value={link} type="url" class="form-control" required />
+			<br />
+			<div class="text-center">
+				<button type="submit" class="btn btn-lg btn-outline-dark">Upload</button>
+			</div>
+		</form>
+	{/if}
 
 	{#await gallery}
 		<p>Loading...</p>
