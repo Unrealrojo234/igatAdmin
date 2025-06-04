@@ -118,10 +118,10 @@
 	{#await upcoming_events}
 		<p>Loading...</p>
 	{:then upcoming_events}
-		<div class="gallery-container">
+		<div class="gallery-container p-2">
 			{#each upcoming_events as data}
 				<div class="imageDiv">
-					<h2 class="text-center mb-3">{data.name}</h2>
+					<h2 class="text-center mb-2 mt-2">{data.name}</h2>
 					<p>{data.info}</p>
 					<p>Date: <span class="text-secondary">{data.date.replace('00:00:00.000Z', '')}</span></p>
 					<p>Time: <span class="text-secondary">{data.time}</span></p>
@@ -135,41 +135,3 @@
 		</div>
 	{/await}
 </main>
-
-<style>
-	form {
-		max-width: 32rem;
-		margin: auto;
-		padding: 1rem;
-	}
-
-	.gallery-container {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-		gap: 1.5rem;
-		padding: 2rem;
-		max-width: 1200px;
-		margin: auto;
-	}
-
-	.imageDiv {
-		border: 1px solid #ddd;
-		border-radius: 8px;
-		overflow: hidden;
-		background-color: #fff;
-		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-		display: flex;
-		padding: 12px;
-		flex-direction: column;
-		transition: transform 0.2s ease;
-	}
-
-	.imageDiv:hover {
-		transform: scale(1.03);
-	}
-
-	.imageDiv p {
-		font-size: 0.9rem;
-		margin: 0 0 0.5rem;
-	}
-</style>

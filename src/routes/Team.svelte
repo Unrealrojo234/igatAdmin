@@ -36,14 +36,6 @@
 	const handleUpload = async (e) => {
 		e.preventDefault();
 
-		//         const data = {
-		//     "name": "test",
-		//     "position": "test",
-		//     "info": "test",
-		//     "email": "test@example.com",
-		//     "phone": 123
-		// };
-
 		try {
 			let data = new FormData();
 
@@ -144,43 +136,3 @@
 		</div>
 	{/await}
 </main>
-
-<style>
-	form {
-		max-width: 32rem;
-		margin: auto;
-		padding: 1rem;
-	}
-
-	.gallery-container {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-		gap: 1.5rem;
-		padding: 2rem;
-		max-width: 1200px;
-		margin: auto;
-	}
-
-	.imageDiv {
-		border: 1px solid #ddd;
-		border-radius: 8px;
-		overflow: hidden;
-		background-color: #fff;
-		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-		transition: transform 0.2s ease;
-	}
-
-	.imageDiv:hover {
-		transform: scale(1.03);
-	}
-
-	img {
-		width: 100%;
-		height: 9rem;
-		display: block;
-	}
-</style>
