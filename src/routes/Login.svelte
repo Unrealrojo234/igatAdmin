@@ -58,10 +58,21 @@
 </main>
 
 <style>
+	main {
+		height: 100vh;
+		width: 100%;
+		overflow: hidden;
+		background-image: url('https://i.pinimg.com/originals/f3/8e/18/f38e1822bbfa446f9ccc75a875c454be.gif');
+		/* background-image: url('https://i.pinimg.com/originals/b0/c2/98/b0c2988dae6c0f5b02e7433021a91f39.gif'); */
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
 	h1 {
 		font-size: 3rem;
 		text-align: center;
 		margin-top: 12px;
+		color: aqua;
 	}
 	.login-box {
 		position: absolute;
@@ -71,9 +82,8 @@
 		padding: 40px;
 		margin: 20px auto;
 		transform: translate(-50%, -55%);
-		background: rgba(0, 0, 0, 0.9);
 		box-sizing: border-box;
-		box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+		box-shadow: 0 15px 25px rgba(0, 236, 253, 0.6);
 		border-radius: 10px;
 	}
 
