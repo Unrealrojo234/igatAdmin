@@ -1,6 +1,10 @@
 <script>
 	import Swal from 'sweetalert2';
 	import { pb } from '$lib/pocketbase';
+	import Loader2 from './loader2.svelte';
+	import Loader from './Loader.svelte';
+
+	let isLoading = $state(false);
 
 	function sweetAlert(icon, title) {
 		Swal.fire({
@@ -18,8 +22,12 @@
 	async function logIn(e) {
 		e.preventDefault();
 
+		isLoading = true;
+
 		try {
 			const authData = await pb.collection('users').authWithPassword(email, password);
+
+			isLoading = false;
 
 			if (pb.authStore.isValid) {
 				sweetAlert('success', 'You have successfully logged in!');
@@ -38,6 +46,9 @@
 	<div class="login-box">
 		<p>Login</p>
 		<form onsubmit={logIn}>
+			{#if isLoading}
+				<Loader2 />
+			{/if}
 			<div class="user-box">
 				<input required bind:value={email} name="" type="text" />
 				<!-- svelte-ignore a11y_label_has_associated_control -->
