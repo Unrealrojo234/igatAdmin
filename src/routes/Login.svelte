@@ -4,6 +4,10 @@
 	import Loader2 from './loader2.svelte';
 	import Loader from './Loader.svelte';
 
+	function refresh() {
+		window.location.reload();
+	}
+
 	let isLoading = $state(false);
 
 	function sweetAlert(icon, title) {
@@ -31,10 +35,15 @@
 
 			if (pb.authStore.isValid) {
 				sweetAlert('success', 'You have successfully logged in!');
+				refresh();
 			} else {
+				isLoading = false;
+
 				sweetAlert('error', 'Incorrect Password or username!');
 			}
 		} catch (error) {
+			isLoading = false;
+
 			sweetAlert('error', 'Incorrect Password or username!');
 		}
 	}
