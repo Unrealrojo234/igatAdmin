@@ -76,7 +76,7 @@
 		}).then(async (result) => {
 			if (result.isConfirmed) {
 				try {
-					let record = await pb.collection('gallery').delete(id);
+					let record = await pb.collection('news').delete(id);
 					if (record) {
 						sweetAlert('success', 'Record Deleted Successfully!');
 
