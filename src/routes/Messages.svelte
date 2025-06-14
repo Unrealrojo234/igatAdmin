@@ -77,6 +77,7 @@
 
 					<div class="message-header">
 						<h2 class="message-sender"><strong>From:</strong> {message.name}</h2>
+						<p><strong>Subject: </strong> {message.subject.toUpperCase()}</p>
 						<p><strong>Tel: +254</strong>{message.phone}</p>
 						<a class="message-email" href="mailto:{message.email}"
 							><strong>Email:</strong> {message.email}</a
