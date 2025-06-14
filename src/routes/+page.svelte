@@ -7,6 +7,7 @@
 	import { pb } from '$lib/pocketbase';
 	import { onMount } from 'svelte';
 	import Swal from 'sweetalert2';
+	import Messages from './Messages.svelte';
 
 	function sweetAlert(icon, title) {
 		Swal.fire({
@@ -119,7 +120,7 @@
 				{:else if active === 3}
 					<UpcomingEvents />
 				{:else if active === 4}
-					<h1 class="text-center">Coming Soon</h1>
+					<Messages />
 				{:else}
 					<Gallery />
 				{/if}
