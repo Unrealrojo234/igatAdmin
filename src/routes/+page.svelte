@@ -8,6 +8,8 @@
 	import { onMount } from 'svelte';
 	import Swal from 'sweetalert2';
 	import Messages from './Messages.svelte';
+	import Registration from './Registration.svelte';
+	import Renewal from './Renewal.svelte';
 
 	function sweetAlert(icon, title) {
 		Swal.fire({
@@ -30,7 +32,10 @@
 		{ id: 1, name: 'News', icon: 'newspaper' },
 		{ id: 2, name: 'Team', icon: 'people-group' },
 		{ id: 3, name: 'Upcoming-Events', icon: 'calendar-days' },
-		{ id: 4, name: 'Messages', icon: 'comments' }
+		{ id: 4, name: 'Messages', icon: 'comments' },
+		{ id: 5, name: 'Registration', icon: 'user-plus' },
+		{ id: 6, name: 'Renewal', icon: 'redo' },
+
 	];
 
 	const handleTabChange = (id) => {
@@ -121,6 +126,10 @@
 					<UpcomingEvents />
 				{:else if active === 4}
 					<Messages />
+				{:else if active === 5}
+					<Registration />
+				{:else if active === 6}
+					<Renewal />
 				{:else}
 					<Gallery />
 				{/if}
